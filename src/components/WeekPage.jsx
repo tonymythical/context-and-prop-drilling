@@ -1,16 +1,26 @@
-import DayCard from "./DayCard.jsx";
+import { useUnits } from "../context/UnitsContext.jsx";
 
-function WeekPage({ city, units }) {
+function UnitsToggle() {
+  const { units, setUnits } = useUnits();
+
   return (
-    <section className="page">
-      <h2 className="page-title">This week in {city.name}</h2>
-      <ol className="days">
-        {city.daily.map((day) => (
-          <DayCard key={day.day} day={day} units={units} />
-        ))}
-      </ol>
-    </section>
+    <div className="units-toggle">
+      <button
+        type="button"
+        className={units === "F" ? "units-on" : ""}
+        onClick={() => setUnits("F")}
+      >
+        °F
+      </button>
+      <button
+        type="button"
+        className={units === "C" ? "units-on" : ""}
+        onClick={() => setUnits("C")}
+      >
+        °C
+      </button>
+    </div>
   );
 }
 
-export default WeekPage;
+export default UnitsToggle;
